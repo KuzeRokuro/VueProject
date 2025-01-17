@@ -381,5 +381,23 @@ h2 {
   padding: 2px;
 }
 
+@media (max-width: 768px) {
+  table {
+    display: block; /* Make table scrollable */
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  th,
+  td {
+    font-size: 0.8rem; /* Adjust text size for smaller screens */
+  }
+
+  .btn-action {
+    padding: 8px 8px;
+    font-size: 0.8rem;
+    width: auto;
+  }
+}
 
 </style>
