@@ -99,7 +99,7 @@ export default {
   }
 
   table {
-    width: 100%;
+    width: 80%;
     max-width: 800px;
     margin: 20px auto;
     border-collapse: collapse;

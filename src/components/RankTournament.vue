@@ -50,7 +50,16 @@
           Start New Round
         </button>
       </div>
+
+      <!-- End Round Button -->
+      <div class="text-center mt-4" v-if="canStartNewRound">
+        <button class="btn btn-primary" @click="updatePlayerStats">
+          End Round
+        </button>
       </div>
+
+      </div>
+
 
 
       <!-- Predict Round Button -->
@@ -340,14 +349,19 @@ export default {
         const response = await axios.post('https://kuzerokuro.pythonanywhere.com/predict/', inputpredictdata);
         const predictedMatches = response.data;
 
-        // Map the predicted matches to the corresponding matches
-        this.predictedMatches = this.matches.map(match => {
-          const predictedMatch = predictedMatches.find(pred => pred.match_id === match.id);
-          return {
-            ...match,
-            predicted_winner: predictedMatch ? predictedMatch.predicted_winner : null
-          };
-        });
+        // Map the predicted matches and filter those with a predicted winner
+        this.predictedMatches = predictedMatches
+          .filter(predictedMatch => predictedMatch.predicted_winner) // Only include matches with a predicted winner
+          .map(predictedMatch => {
+            const match = this.matches.find(m => m.id === predictedMatch.match_id);
+            return match
+              ? {
+                  ...match,
+                  predicted_winner: predictedMatch.predicted_winner,
+                }
+              : null;
+          })
+          .filter(match => match !== null); // Remove any null values resulting from unmatched matches
 
         console.log("Predicted Matches:", this.predictedMatches);
       } catch (error) {
