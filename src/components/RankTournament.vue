@@ -64,7 +64,7 @@
 
       <!-- Predict Round Button -->
       <div class="text-center mt-4">
-        <button class="btn btn-secondary" @click="predictRound">
+        <button class="btn-predict" @click="predictRound">
           Predict Round </button>
       </div>
 
@@ -394,6 +394,21 @@ h2 {
   background-color: #438b82 ;
   padding: 2px;
 }
+
+.btn-predict {
+    padding: 10px 10px;
+    font-size: 1rem;
+    background-color: #ffc107;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+  }
+
+  .btn-predict:hover {
+        background-color: #af4820;
+        color: white;
+  }
 
 @media (max-width: 768px) {
   table {
